@@ -28,7 +28,7 @@
 <div class="row align-items-center">
   <div class="col-lg-2 col-md-3 col-6">
     <a href="{% url 'home' %}" class="brand-wrap">
-      <img class="logo" src="{% static './images/logo01.png' %}">
+      <img class="logo" src="{% static './images/logos.png' %}">
     </a> <!-- brand-wrap.// -->
   </div>
   <div class="col-lg col-sm col-md col-6 flex-grow-0">
@@ -48,9 +48,11 @@
   </div> <!-- col.// -->
   <a href="{% url 'store' %}" class="btn btn-outline-primary">Tienda</a>
   <div class="col-lg  col-md-6 col-sm-12 col">
-    <form action="#" class="search">
+
+
+    <form action="{% url 'search' %}" class="search">
       <div class="input-group w-100">
-          <input type="text" class="form-control" style="width:60%;" placeholder="Search">
+          <input type="text" class="form-control" style="width:60%;" placeholder="Buscar Productos" name="keyword">
 
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit">
@@ -60,18 +62,37 @@
         </div>
     </form> <!-- search-wrap .end// -->
   </div> <!-- col.// -->
+
+
+
   <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
         <div class="d-flex justify-content-end mb-3 mb-lg-0">
+
+
+
+          {% if user.id is None%}
           <div class="widget-header">
             <small class="title text-muted">Bienvenido visitante!</small>
             <div>
-              <a href="./signin.html">Login</a> <span class="dark-transp"> | </span>
-              <a href="./register.html"> Registrar</a>
+              <a href="{% url 'login' %}">Login</a> <span class="dark-transp"> | </span>
+              <a href="{%url 'register'%}"> Registrar</a>
             </div>
           </div>
-          <a href="./cart.html" class="widget-header pl-3 ml-3">
+
+          {% else %}
+          <div class="widget-header">
+            <small class="title text-muted">Bienvenido <b> {{user.first_name}}</b></small>
+            <div>
+              <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
+              <a href="{%url 'logout'%}"> Salir sesión</a>
+            </div>
+          </div>
+          {%endif%}
+
+
+          <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-            <span class="badge badge-pill badge-danger notify">0</span>
+            <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
           </a>
         </div> <!-- widgets-wrap.// -->
       </div> <!-- col.// -->

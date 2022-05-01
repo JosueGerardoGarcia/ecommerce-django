@@ -1,0 +1,12 @@
+{% autoescape off %}
+
+Hola querido {{ user.first_name }},
+Por favor activa tu cuenta de PethShop dandole click al siguiente link:
+
+http://{{domain}}{%url 'activate' uidb64=uid token=token %}
+
+
+Saludos de PethShop
+
+
+{% endautoescape %}
