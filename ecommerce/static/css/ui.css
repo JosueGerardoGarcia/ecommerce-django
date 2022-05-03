@@ -14,7 +14,9 @@ INCLUDE STYLES AND COMPONENTS
 a:hover {
   text-decoration: none;
 }
-
+button {
+  background-color: orange;
+}
 .img-wrap {
   text-align: center;
   display: block;
