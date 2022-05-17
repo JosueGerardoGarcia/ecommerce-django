@@ -1,133 +1,133 @@
-	{% extends 'base.html' %}
-	{% load static %}
-	{% block content %}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 
 
-	<!-- ========================= SECTION PAGETOP ========================= -->
-	<section class="section-intro padding-y-sm">
-		<div class="container">
+<!-- ========================= SECTION PAGETOP ========================= -->
+<section class="section-intro padding-y-sm">
+	<div class="container">
 
-			<div class="intro-banner-wrap">
-				<img src="{% static 'images/banners/banner1.jpg' %}" class="img-fluid rounded">
-			</div>
+		<div class="intro-banner-wrap">
+			<img src="{% static 'images/banners/banner1.jpg' %}" class="img-fluid rounded">
+		</div>
 
-		</div> <!-- container //  -->
-	</section>
-	<!-- ========================= SECTION INTRO END// ========================= -->
+	</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION INTRO END// ========================= -->
 
-	<!-- ========================= SECTION CONTENT ========================= -->
-	<section class="section-content padding-y">
-	  <div class="container">
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+	<div class="container">
 
-	    <div class="row">
-	      <aside class="col-md-3">
+		<div class="row">
+			<aside class="col-md-3">
 
-	        <div class="card">
-	          <article class="filter-group">
-	            <header class="card-header">
-	              <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
-	                <i class="icon-control fa fa-chevron-down"></i>
-	                <h6 class="title">Categorias</h6>
-	              </a>
-	            </header>
-	            <div class="filter-content collapse show" id="collapse_1" style="">
-	              <div class="card-body">
+				<div class="card">
+					<article class="filter-group">
+						<header class="card-header">
+							<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+								<i class="icon-control fa fa-chevron-down"></i>
+								<h6 class="title">Categorias</h6>
+							</a>
+						</header>
+						<div class="filter-content collapse show" id="collapse_1" style="">
+							<div class="card-body">
 
-	                <ul class="list-menu">
-	                  <li><a href="{% url 'store' %}">Todos Los Productos </a></li>
-	                  {% for category in links%}
-	                  <li><a href="{{ category.get_url }}">{{category.category_name}}  </a></li>
-	                  {%endfor%}
-	                </ul>
+								<ul class="list-menu">
+									<li><a href="{% url 'store' %}">Todos Los Productos </a></li>
+									{% for category in links%}
+									<li><a href="{{ category.get_url }}">{{category.category_name}}  </a></li>
+									{%endfor%}
+								</ul>
 
-	              </div> <!-- card-body.// -->
-	            </div>
-	          </article> <!-- filter-group  .// -->
-
-
-	        </div> <!-- card.// -->
-
-	      </aside> <!-- col.// -->
-	      <main class="col-md-9">
-
-	        <header class="border-bottom mb-4 pb-3">
-	          <div class="form-inline">
-	            <span class="mr-md-auto"><b>{{ product_count}}</b> Productos Encontrados </span>
-
-	          </div>
-	        </header><!-- sect-heading -->
-
-	        <div class="row">
-
-						{% if products %}
-	          {% for product in products %}
-	          <div class="col-md-4">
-	            <figure class="card card-product-grid">
-	              <div class="img-wrap">
-
-	                <a href="{{ product.get_url}}"><img src="{{ product.images.url}}"></a>
-
-	              </div> <!-- img-wrap.// -->
-	              <figcaption class="info-wrap">
-	                <div class="fix-height">
-	                  <a href="{{ product.get_url}}" class="title">{{product.product_name}}</a>
-	                  <div class="price-wrap mt-2">
-	                    <span class="price">${{product.price}}</span>
-	                  </div> <!-- price-wrap.// -->
-	                </div>
-	                <a href="{{ product.get_url}}" class="btn btn-block btn-outline-success">Agregar al carrito </a>
-	              </figcaption>
-	            </figure>
-	          </div> <!-- col.// -->
-	          {% endfor %}
-
-						{% else %}
-						<div>
-							<b>	<h2>No se encontraron resultados con tu busqueda, intenta de nuevo</h2> </b>
-
+							</div> <!-- card-body.// -->
 						</div>
-						{% endif %}
-	        </div> <!-- row end.// -->
+					</article> <!-- filter-group  .// -->
 
 
-	        <nav class="mt-4" aria-label="Page navigation sample">
+				</div> <!-- card.// -->
 
-						{% if products.has_other_pages %}
-		          <ul class="pagination">
+			</aside> <!-- col.// -->
+			<main class="col-md-9">
 
-		            {% if products.has_previous %}
-		            <li class="page-item"><a class="page-link" href="?page={{products.previous_page_number}}">Anterior</a></li>
-		            {% else %}
-		            <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
-		            {% endif %}
+				<header class="border-bottom mb-4 pb-3">
+					<div class="form-inline">
+						<span class="mr-md-auto"><b>{{ product_count}}</b> Productos Encontrados </span>
 
-								{% for i in products.paginator.page_range %}
+					</div>
+				</header><!-- sect-heading -->
 
-									{% if products.number == i %}
-						<li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+				<div class="row">
+
+					{% if products %}
+					{% for product in products %}
+					<div class="col-md-4">
+						<figure class="card card-product-grid">
+							<div class="img-wrap">
+
+								<a href="{{ product.get_url}}"><img src="{{ product.images.url}}"></a>
+
+							</div> <!-- img-wrap.// -->
+							<figcaption class="info-wrap">
+								<div class="fix-height">
+									<a href="{{ product.get_url}}" class="title">{{product.product_name}}</a>
+									<div class="price-wrap mt-2">
+										<span class="price">${{product.price}}</span>
+									</div> <!-- price-wrap.// -->
+								</div>
+								<a href="{{ product.get_url}}" class="btn btn-block btn-outline-success">Agregar al carrito </a>
+							</figcaption>
+						</figure>
+					</div> <!-- col.// -->
+					{% endfor %}
+
 					{% else %}
-						<li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+					<div>
+						<b>	<h2>No se encontraron resultados con tu busqueda, intenta de nuevo</h2> </b>
+
+					</div>
 					{% endif %}
+				</div> <!-- row end.// -->
 
-				{% endfor %}
 
-				{% if products.has_next %}
-					<li class="page-item"><a class="page-link" href="?page={{products.next_page_number}}">Siguiente</a></li>
+				<nav class="mt-4" aria-label="Page navigation sample">
+
+					{% if products.has_other_pages %}
+						<ul class="pagination">
+
+							{% if products.has_previous %}
+							<li class="page-item"><a class="page-link" href="?page={{products.previous_page_number}}">Anterior</a></li>
+							{% else %}
+							<li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+							{% endif %}
+
+							{% for i in products.paginator.page_range %}
+
+								{% if products.number == i %}
+					<li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
 				{% else %}
-					<li class="page-item disabled"><a class="page-link" href="#">Siguiente</a></li>
+					<li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
 				{% endif %}
 
-			</ul>
+			{% endfor %}
+
+			{% if products.has_next %}
+				<li class="page-item"><a class="page-link" href="?page={{products.next_page_number}}">Siguiente</a></li>
+			{% else %}
+				<li class="page-item disabled"><a class="page-link" href="#">Siguiente</a></li>
 			{% endif %}
 
-	        </nav>
+		</ul>
+		{% endif %}
 
-	      </main> <!-- col.// -->
+				</nav>
 
-	    </div>
+			</main> <!-- col.// -->
 
-	  </div> <!-- container .//  -->
-	</section>
-	<!-- ========================= SECTION CONTENT END// ========================= -->
+		</div>
 
-	{% endblock %}
+	</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}

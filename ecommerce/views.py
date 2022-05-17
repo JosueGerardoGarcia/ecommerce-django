@@ -1,3 +1,6 @@
+"""
+Autor: García Jimenez Josue Gerardo (PetShop, equipo 2)
+"""
 from django.shortcuts import render
 from store.models import Product, ReviewRating
 

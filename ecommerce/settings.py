@@ -10,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+"""
+Autor: García Jimenez Josue Gerardo (PetShop, equipo 2)
+"""
+
+
 from pathlib import Path
 from decouple import config
 
